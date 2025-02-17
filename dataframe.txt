@@ -1,0 +1,206 @@
+
+Here are the top Pandas DataFrame operations, along with examples of how to use them:
+
+1. .head()
+Returns the first n rows of a DataFrame (default is 5).
+
+python
+Copy code
+df.head(10)  # First 10 rows
+2. .tail()
+Returns the last n rows of a DataFrame (default is 5).
+
+python
+Copy code
+df.tail(10)  # Last 10 rows
+3. .info()
+Provides a summary of the DataFrame, including the number of non-null values and data types.
+
+python
+Copy code
+df.info()
+4. .describe()
+Generates descriptive statistics of numeric columns (count, mean, std, min, max, etc.).
+
+python
+Copy code
+df.describe()
+5. .shape
+Returns the number of rows and columns as a tuple (n_rows, n_columns).
+
+python
+Copy code
+df.shape
+6. .columns
+Returns the column names of a DataFrame.
+
+python
+Copy code
+df.columns
+7. .dtypes
+Returns the data types of each column in the DataFrame.
+
+python
+Copy code
+df.dtypes
+8. .set_index()
+Sets one of the DataFrame columns as the index.
+
+python
+Copy code
+df = df.set_index('ColumnName')
+9. .reset_index()
+Resets the index of the DataFrame, reverting back to the default integer index.
+
+python
+Copy code
+df = df.reset_index()
+10. .drop()
+Drops specific rows or columns from a DataFrame.
+
+python
+Copy code
+df = df.drop('ColumnName', axis=1)  # Drop a column
+df = df.drop([0, 1], axis=0)  # Drop rows with indices 0 and 1
+11. .rename()
+Renames columns or rows.
+
+python
+Copy code
+df = df.rename(columns={'OldName': 'NewName'})
+12. .sort_values()
+Sorts the DataFrame by one or more columns.
+
+python
+Copy code
+df = df.sort_values(by='ColumnName', ascending=False)  # Sort by column in descending order
+13. .filter()
+Filters columns by a specified condition (e.g., selecting columns with specific substrings).
+
+python
+Copy code
+df_filtered = df.filter(like='prefix', axis=1)  # Select columns whose names start with 'prefix'
+14. .apply()
+Applies a function along a DataFrame axis (rows or columns).
+
+python
+Copy code
+df['NewColumn'] = df['ColumnName'].apply(lambda x: x * 2)  # Apply a function to a column
+15. .agg()
+Aggregates the DataFrame with one or more functions (e.g., sum, mean, etc.).
+
+python
+Copy code
+df_agg = df.agg({'Column1': 'sum', 'Column2': 'mean'})
+16. .groupby()
+Groups the DataFrame by a specific column and performs aggregation operations.
+
+python
+Copy code
+df_grouped = df.groupby('Category').agg({'Value': 'sum'})
+17. .merge()
+Merges two DataFrames on a specific column, similar to SQL joins.
+
+python
+Copy code
+df_merged = pd.merge(df1, df2, on='ColumnName', how='inner')
+18. .concat()
+Concatenates two or more DataFrames along a particular axis (rows or columns).
+
+python
+Copy code
+df_concat = pd.concat([df1, df2], axis=0)  # Concatenate vertically (row-wise)
+df_concat = pd.concat([df1, df2], axis=1)  # Concatenate horizontally (column-wise)
+19. .pivot_table()
+Creates a pivot table for the DataFrame with specified values, rows, and columns.
+
+python
+Copy code
+df_pivot = df.pivot_table(values='Value', index='Category', aggfunc='sum')
+20. .isnull() and .notnull()
+Checks for missing values in the DataFrame.
+
+python
+Copy code
+df.isnull()  # Returns a DataFrame of boolean values (True for NaN)
+df.notnull()  # Returns a DataFrame of boolean values (True for non-NaN)
+21. .fillna()
+Fills missing values (NaN) with a specified value or method.
+
+python
+Copy code
+df = df.fillna(0)  # Fill NaN with 0
+22. .dropna()
+Removes rows or columns with missing values.
+
+python
+Copy code
+df = df.dropna()  # Drop rows with any NaN values
+23. .duplicated()
+Checks for duplicate rows.
+
+python
+Copy code
+df.duplicated()  # Returns a boolean Series indicating duplicate rows
+24. .unique()
+Returns the unique values of a specific column.
+
+python
+Copy code
+unique_values = df['ColumnName'].unique()
+25. .value_counts()
+Returns the count of unique values in a specific column.
+
+python
+Copy code
+df['ColumnName'].value_counts()
+26. .shift()
+Shifts the values of a column by a specified number of periods.
+
+python
+Copy code
+df['Shifted'] = df['ColumnName'].shift(1)  # Shift values down by 1
+27. .crosstab()
+Generates a cross-tabulation of two or more columns.
+
+python
+Copy code
+pd.crosstab(df['Category'], df['Value'])
+28. .loc[] and .iloc[]
+Accesses a group of rows and columns by labels (loc) or positions (iloc).
+
+python
+Copy code
+df_loc = df.loc[0:10, ['Column1', 'Column2']]  # By label
+df_iloc = df.iloc[0:10, [0, 1]]  # By position
+29. .nlargest()
+Returns the top n largest values from a specific column.
+
+python
+Copy code
+df_largest = df.nlargest(5, 'ColumnName')
+30. .nsmallest()
+Returns the top n smallest values from a specific column.
+
+python
+Copy code
+df_smallest = df.nsmallest(5, 'ColumnName')
+31. .transpose()
+Transposes the DataFrame (rows become columns and vice versa).
+
+python
+Copy code
+df_transposed = df.transpose()
+32. .to_numpy()
+Converts a DataFrame to a NumPy array.
+
+python
+Copy code
+array = df.to_numpy()
+33. .to_dict()
+Converts a DataFrame to a dictionary.
+
+python
+Copy code
+dict_df = df.to_dict()
+These operations cover a wide range of use cases for data cleaning, manipulation, and exploration in Pandas.

@@ -1,0 +1,79 @@
+The `if __name__ == "__main__"` construct in Python is used to control the execution of code based on how a script is run. It ensures that specific code only executes when the script is run directly, not when it is imported as a module into another script.
+
+### How It Works
+1. **`__name__` Variable**: Every Python module has a special built-in variable called `__name__`. 
+   - If the script is executed directly (e.g., `python script.py`), `__name__` is set to `"__main__"`.
+   - If the script is imported as a module, `__name__` is set to the module's name (e.g., `"module_name"`).
+
+2. **Purpose of the Construct**:
+   - Code inside `if __name__ == "__main__":` only runs when the script is executed directly.
+   - This prevents unintended execution of code when the script is imported as a module.
+
+### Example 1: Basic Usage
+```python
+# file_one.py
+print("This will always run")
+
+if __name__ == "__main__":
+    print("This runs only when file_one.py is executed directly")
+```
+
+- Running `python file_one.py` outputs:
+  ```
+  This will always run
+  This runs only when file_one.py is executed directly
+  ```
+- Importing `file_one` in another script:
+  ```python
+  import file_one
+  ```
+  Outputs:
+  ```
+  This will always run
+  ```
+
+### Example 2: Using Functions
+```python
+# file_two.py
+def greet():
+    print("Hello from greet()!")
+
+if __name__ == "__main__":
+    greet()
+```
+
+- Running `python file_two.py` outputs:
+  ```
+  Hello from greet()!
+  ```
+- Importing `file_two` in another script does not execute `greet()` automatically:
+  ```python
+  import file_two
+  ```
+
+### Why Use It?
+1. **Reusable Modules**: Allows you to define functions or classes that can be reused without executing unnecessary code during import.
+2. **Testing and Debugging**: Includes test or demo code that runs only when the script is executed directly.
+3. **Clarity**: Makes it clear which part of the code serves as the entry point for execution.
+
+### Best Practices
+- Keep code under `if __name__ == "__main__":` minimal by calling a separate `main()` function:
+  ```python
+  def main():
+      print("This is the main function")
+
+  if __name__ == "__main__":
+      main()
+  ```
+
+This design pattern improves readability and modularity, making your scripts more maintainable and reusable.
+
+Citations:
+[1] https://builtin.com/articles/name-python
+[2] https://www.freecodecamp.org/news/if-name-main-python-example/
+[3] https://realpython.com/if-name-main-python/
+[4] https://www.reddit.com/r/learnpython/comments/y7yu9i/what_does_if_name_main_do_in_python_can_anyone/
+[5] https://www.theserverside.com/tip/What-does-the-Python-if-name-equals-main-construct-do
+[6] https://docs.python.org/fr/dev/library/__main__.html
+[7] https://www.reddit.com/r/learnpython/comments/st5n2o/why_do_some_programmers_codes_if_name_main/
+[8] https://www.reddit.com/r/learnpython/comments/19b83hk/can_anyone_explain_use_of_if_name_main_can_you/
